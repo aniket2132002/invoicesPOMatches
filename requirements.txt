@@ -1,0 +1,7 @@
+streamlit
+pymupdf
+spacy
+pandas
+rapidfuzz
+google-generativeai
+python-dotenv
