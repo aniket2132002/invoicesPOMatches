@@ -2,12 +2,18 @@ import streamlit as st
 import pandas as pd
 from extractor import extract_text_from_pdf, extract_fields
 from matcher import match_fields
+import logging
+
+# Set up logging to capture detailed information
+logging.basicConfig(level=logging.INFO)
 
 st.title("PO & Invoice Matcher")
 
+# File Uploaders for PO and Invoice PDFs
 po_file = st.file_uploader("Upload PO PDF", type=["pdf"])
 inv_file = st.file_uploader("Upload Invoice PDF", type=["pdf"])
 
+# When the button is clicked
 if st.button("Match Documents") and po_file and inv_file:
     po_text = extract_text_from_pdf(po_file)
     inv_text = extract_text_from_pdf(inv_file)
@@ -132,3 +138,4 @@ if st.button("Match Documents") and po_file and inv_file:
         except FileNotFoundError:
             pass
         df.to_csv("matches.csv", index=False)
+
